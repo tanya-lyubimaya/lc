@@ -1,21 +1,12 @@
 package lc
 
-func runningSumNaive(nums []int) []int {
-	sums := make([]int, len(nums))
-	for i := 0; i < len(nums); i++ {
-		temp := 0
-		for j := 0; j <= i; j++ {
-			temp += nums[j]
-		}
-		sums[i] = temp
-	}
-	return sums
-}
-
 func runningSum(nums []int) []int {
 	sums := make([]int, len(nums))
-	var temp int
-	for i := 0; i < len(nums); i++ {
+
+	sums[0] = nums[0]
+	temp := nums[0]
+
+	for i := 1; i < len(nums); i++ {
 		temp += nums[i]
 		sums[i] = temp
 	}
