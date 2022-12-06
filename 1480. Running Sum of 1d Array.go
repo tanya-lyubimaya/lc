@@ -1,6 +1,6 @@
 package lc
 
-func runningSum(nums []int) []int {
+func runningSumClassic(nums []int) []int {
 	sums := make([]int, len(nums))
 	sums[0] = nums[0]
 
@@ -9,4 +9,12 @@ func runningSum(nums []int) []int {
 	}
 
 	return sums
+}
+
+func runningSum(nums []int) []int {
+	for i := 1; i < len(nums); i++ {
+		nums[i] += nums[i-1]
+	}
+	
+	return nums
 }
