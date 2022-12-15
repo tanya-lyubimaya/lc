@@ -17,7 +17,7 @@ func twoSumBruteForce(nums []int, target int) []int {
 	return results
 }
 
-func twoSum(nums []int, target int) []int {
+func twoSumHashMapTwoPass(nums []int, target int) []int {
 	hashmap := make(map[int]int)
 	for i, v := range nums {
 		hashmap[v] = i
@@ -31,4 +31,14 @@ func twoSum(nums []int, target int) []int {
 	return []int{-1, -1}
 }
 
-// TODO: Add one-pass hash table solution
+func twoSum(nums []int, target int) []int {
+	hashmap := make(map[int]int)
+	for i, v := range nums {
+		complement := target - v
+		if index, ok := hashmap[complement]; ok && index != i {
+			return []int{i, hashmap[complement]}
+		}
+		hashmap[v] = i
+	}
+	return []int{-1, -1}
+}
