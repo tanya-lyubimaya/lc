@@ -1,6 +1,6 @@
 package lc
 
-func twoSum(nums []int, target int) []int {
+func twoSumBruteForce(nums []int, target int) []int {
 	var results []int
 	for i, v := range nums {
 		for j, v2 := range nums {
@@ -17,5 +17,18 @@ func twoSum(nums []int, target int) []int {
 	return results
 }
 
-// TODO: Add two-pass hash table solution
+func twoSum(nums []int, target int) []int {
+	hashmap := make(map[int]int)
+	for i, v := range nums {
+		hashmap[v] = i
+	}
+	for i, v := range nums {
+		complement := target - v
+		if index, ok := hashmap[complement]; ok && index != i {
+			return []int{i, hashmap[complement]}
+		}
+	}
+	return []int{-1, -1}
+}
+
 // TODO: Add one-pass hash table solution
