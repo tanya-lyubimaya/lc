@@ -1,7 +1,5 @@
 package lc
 
-import "fmt"
-
 func moveZeroes(nums []int) {
 	var j int
 	for i := 0; i < len(nums); i++ {
@@ -13,7 +11,6 @@ func moveZeroes(nums []int) {
 	for i := j; i < len(nums); i++ {
 		nums[i] = 0
 	}
-	fmt.Println(nums)
 }
 
 func moveZeroesWithSwap(nums []int) {
@@ -24,5 +21,4 @@ func moveZeroesWithSwap(nums []int) {
 			j++
 		}
 	}
-	fmt.Println(nums)
 }
