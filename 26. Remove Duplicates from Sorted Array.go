@@ -1,6 +1,6 @@
 package lc
 
-func removeDuplicates(nums []int) int {
+func removeDuplicatesNaive(nums []int) int {
 	i := 1
 	k := len(nums)
 	for i < len(nums) && k > i {
@@ -11,6 +11,19 @@ func removeDuplicates(nums []int) int {
 			k--
 		} else {
 			i++
+		}
+	}
+	return k
+}
+
+func removeDuplicates(nums []int) int {
+	k := len(nums)
+	for i := len(nums) - 2; i >= 0; i-- {
+		if nums[i] == nums[i+1] {
+			for j := i + 1; j < len(nums); j++ {
+				nums[j-1] = nums[j]
+			}
+			k--
 		}
 	}
 	return k
