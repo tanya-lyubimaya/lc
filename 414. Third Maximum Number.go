@@ -53,6 +53,35 @@ func thirdMaxPointers(nums []int) int {
 	}
 }
 
+func thirdMaxPointersAndBooleans(nums []int) int {
+	if len(nums) == 1 {
+		return nums[0]
+	}
+
+	firstMax, secondMax, thirdMax := [2]int{}, [2]int{}, [2]int{}
+
+	for _, v := range nums {
+		if (firstMax[0] == v && firstMax[1] == 1) || (secondMax[0] == v && secondMax[1] == 1) || (thirdMax[0] == v && thirdMax[1] == 1) {
+			continue
+		}
+		if v > firstMax[0] || firstMax[1] == 0 {
+			thirdMax[0], thirdMax[1] = secondMax[0], secondMax[1]
+			secondMax[0], secondMax[1] = firstMax[0], firstMax[1]
+			firstMax[0], firstMax[1] = v, 1
+		} else if v > secondMax[0] || secondMax[1] == 0 {
+			thirdMax[0], thirdMax[1] = secondMax[0], secondMax[1]
+			secondMax[0], secondMax[1] = v, 1
+		} else if v > thirdMax[0] || thirdMax[1] == 0 {
+			thirdMax[0], thirdMax[1] = v, 1
+		}
+	}
+
+	if thirdMax[1] == 0 {
+		return firstMax[0]
+	} else {
+		return thirdMax[0]
+	}
+}
+
 // TODO: Approach 2: Min Heap Data Structure
 // TODO: Approach 3: Ordered Set
-// TODO: Approach 5: 3 Pointers (w/ booleans)
