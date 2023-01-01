@@ -5,10 +5,10 @@ import (
 	"sort"
 )
 
-func sortedSquaresFirstAttempt(nums []int) []int {
-	var squares []int
-	for _, v := range nums {
-		squares = append(squares, int(math.Pow(float64(v), 2)))
+func sortedSquaresWithAdditionalArray(nums []int) []int {
+	squares := make([]int, len(nums))
+	for i, v := range nums {
+		squares[i] = int(math.Pow(float64(v), 2))
 	}
 	sort.Ints(squares)
 	return squares
