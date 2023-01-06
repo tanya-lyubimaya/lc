@@ -1,15 +1,17 @@
 package lc
 
 func checkIfExist(arr []int) bool {
-	elements := make(map[int]int, len(arr))
-	for i, v := range arr {
-		elements[v] = i
+	type void struct{}
+	var member void
+	elements := make(map[int]void)
+	for _, v := range arr {
 		if _, ok := elements[v*2]; ok {
 			return true
 		}
 		if _, ok := elements[v/2]; ok && v%2 == 0 {
 			return true
 		}
+		elements[v] = member
 	}
 	return false
 }
