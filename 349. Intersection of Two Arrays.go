@@ -1,6 +1,8 @@
 package lc
 
-func intersectionNaive(nums1 []int, nums2 []int) []int {
+import "sort"
+
+func intersectionLoops(nums1 []int, nums2 []int) []int {
 	if len(nums1) == 0 && len(nums2) == 0 && nums1[0] == nums2[0] {
 		return []int{nums1[0]}
 	}
@@ -23,5 +25,47 @@ func intersectionNaive(nums1 []int, nums2 []int) []int {
 	return result
 }
 
-// TODO: turn slices to sets by removing duplicates and use hash map to track intersections
+func intersectionHashMap(nums1 []int, nums2 []int) []int {
+	if len(nums1) == 0 && len(nums2) == 0 && nums1[0] == nums2[0] {
+		return []int{nums1[0]}
+	}
+	numsMap := make(map[int]int)
+	sort.Ints(nums1)
+	sort.Ints(nums2)
+	k1, k2 := len(nums1), len(nums2)
+	for i := 1; i < k1; i++ {
+		if nums1[i] == nums1[i-1] {
+			for j := i; j < k1-1; j++ {
+				nums1[j] = nums1[j+1]
+			}
+			k1--
+		}
+	}
+	for i := 1; i < k2; i++ {
+		if nums2[i] == nums2[i-1] {
+			for j := i; j < k2-1; j++ {
+				nums2[j] = nums2[j+1]
+			}
+			k2--
+		}
+	}
+	for i := 0; i < k1; i++ {
+		if _, ok := numsMap[nums1[i]]; !ok {
+			numsMap[nums1[i]]++
+		}
+	}
+	for i := 0; i < k2; i++ {
+		if v, _ := numsMap[nums2[i]]; v == 1 {
+			numsMap[nums2[i]]++
+		}
+	}
+	nums1 = nil
+	for k, v := range numsMap {
+		if v == 2 {
+			nums1 = append(nums1, k)
+		}
+	}
+	return nums1
+}
+
 // TODO: sort slices in advance and use pointers (try memory O(1))
