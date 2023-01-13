@@ -12,7 +12,7 @@ func missingNumberSort(nums []int) int {
 	return len(nums)
 }
 
-func missingNumber(nums []int) int {
+func missingNumberMap(nums []int) int {
 	type void struct{}
 	var member void
 	m := make(map[int]void)
@@ -27,4 +27,15 @@ func missingNumber(nums []int) int {
 		}
 	}
 	return len(nums)
+}
+
+func missingNumber(nums []int) int {
+	var sum int
+	for i := 0; i <= len(nums); i++ {
+		sum += i
+	}
+	for _, v := range nums {
+		sum -= v
+	}
+	return sum
 }
