@@ -39,3 +39,18 @@ func missingNumber(nums []int) int {
 	}
 	return sum
 }
+
+func missingNumberBinarySearch(nums []int) int {
+	sort.Ints(nums)
+	left, right := 0, len(nums)
+	mid := (left + right) / 2
+	for left < right {
+		mid = (left + right) / 2
+		if nums[mid] > mid {
+			right = mid
+		} else {
+			left = mid + 1
+		}
+	}
+	return left
+}
