@@ -29,7 +29,7 @@ func missingNumberMap(nums []int) int {
 	return len(nums)
 }
 
-func missingNumber(nums []int) int {
+func missingNumberSum(nums []int) int {
 	var sum int
 	for i := 0; i <= len(nums); i++ {
 		sum += i
@@ -53,4 +53,12 @@ func missingNumberBinarySearch(nums []int) int {
 		}
 	}
 	return left
+}
+
+func missingNumber(nums []int) int {
+	sum := len(nums) * (len(nums) + 1) / 2
+	for _, v := range nums {
+		sum -= v
+	}
+	return sum
 }
