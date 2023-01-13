@@ -55,10 +55,18 @@ func missingNumberBinarySearch(nums []int) int {
 	return left
 }
 
-func missingNumber(nums []int) int {
+func missingNumberBetterSum(nums []int) int {
 	sum := len(nums) * (len(nums) + 1) / 2
 	for _, v := range nums {
 		sum -= v
 	}
 	return sum
+}
+
+func missingNumber(nums []int) int {
+	var xor, i int
+	for ; i < len(nums); i++ {
+		xor ^= i ^ nums[i]
+	}
+	return xor ^ i
 }
