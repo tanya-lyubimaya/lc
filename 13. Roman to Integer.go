@@ -1,5 +1,7 @@
 package lc
 
+import "strings"
+
 func romanToInt(s string) int {
 	var res int
 	i := len(s) - 1
@@ -60,6 +62,35 @@ func romanToInt(s string) int {
 	}
 	if i == 0 {
 		switch s[0] {
+		case 'I':
+			res += 1
+		case 'V':
+			res += 5
+		case 'X':
+			res += 10
+		case 'L':
+			res += 50
+		case 'C':
+			res += 100
+		case 'D':
+			res += 500
+		case 'M':
+			res += 1000
+		}
+	}
+	return res
+}
+
+func romanToIntButchered(s string) int {
+	s = strings.Replace(s, "IV", "IIII", -1)
+	s = strings.Replace(s, "IX", "VIIII", -1)
+	s = strings.Replace(s, "XL", "XXXX", -1)
+	s = strings.Replace(s, "XC", "LXXXX", -1)
+	s = strings.Replace(s, "CD", "CCCC", -1)
+	s = strings.Replace(s, "CM", "DCCCC", -1)
+	var res int
+	for _, c := range s {
+		switch c {
 		case 'I':
 			res += 1
 		case 'V':
