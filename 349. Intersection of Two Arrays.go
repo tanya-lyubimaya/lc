@@ -68,4 +68,30 @@ func intersectionHashMap(nums1 []int, nums2 []int) []int {
 	return nums1
 }
 
-// TODO: sort slices in advance and use pointers (try memory O(1))
+func intersection(nums1 []int, nums2 []int) []int {
+	if len(nums1) == 0 && len(nums2) == 0 && nums1[0] == nums2[0] {
+		return []int{nums1[0]}
+	}
+	sort.Ints(nums1)
+	sort.Ints(nums2)
+	var i, j int
+	var result []int
+	for i < len(nums1) && j < len(nums2) {
+		if nums1[i] == nums2[j] {
+			result = append(result, nums1[i])
+			i++
+			j++
+		} else if nums1[i] < nums2[j] {
+			i++
+		} else {
+			j++
+		}
+		for i > 0 && i < len(nums1) && nums1[i] == nums1[i-1] {
+			i++
+		}
+		for j > 0 && j < len(nums2) && nums2[j] == nums2[j-1] {
+			j++
+		}
+	}
+	return result
+}
