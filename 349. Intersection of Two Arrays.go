@@ -30,8 +30,6 @@ func intersectionHashMap(nums1 []int, nums2 []int) []int {
 		return []int{nums1[0]}
 	}
 	numsMap := make(map[int]int)
-	sort.Ints(nums1)
-	sort.Ints(nums2)
 	k1, k2 := len(nums1), len(nums2)
 	for i := 1; i < k1; i++ {
 		if nums1[i] == nums1[i-1] {
