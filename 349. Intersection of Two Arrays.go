@@ -3,7 +3,7 @@ package lc
 import "sort"
 
 func intersectionLoops(nums1 []int, nums2 []int) []int {
-	if len(nums1) == 0 && len(nums2) == 0 && nums1[0] == nums2[0] {
+	if len(nums1) == 1 && len(nums2) == 1 && nums1[0] == nums2[0] {
 		return []int{nums1[0]}
 	}
 	var result []int
@@ -26,7 +26,7 @@ func intersectionLoops(nums1 []int, nums2 []int) []int {
 }
 
 func intersectionHashMap(nums1 []int, nums2 []int) []int {
-	if len(nums1) == 0 && len(nums2) == 0 && nums1[0] == nums2[0] {
+	if len(nums1) == 1 && len(nums2) == 1 && nums1[0] == nums2[0] {
 		return []int{nums1[0]}
 	}
 	numsMap := make(map[int]int)
@@ -69,7 +69,7 @@ func intersectionHashMap(nums1 []int, nums2 []int) []int {
 }
 
 func intersection(nums1 []int, nums2 []int) []int {
-	if len(nums1) == 0 && len(nums2) == 0 && nums1[0] == nums2[0] {
+	if len(nums1) == 1 && len(nums2) == 1 && nums1[0] == nums2[0] {
 		return []int{nums1[0]}
 	}
 	sort.Ints(nums1)
