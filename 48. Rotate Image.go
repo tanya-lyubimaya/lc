@@ -56,3 +56,32 @@ func rotateGroups(matrix [][]int) {
 		}
 	}
 }
+
+func rotate(matrix [][]int) {
+	transpose(matrix)
+	reflect(matrix)
+}
+
+func transpose(matrix [][]int) {
+	n := len(matrix[0])
+	for i := 0; i < n; i++ {
+		for j := i + 1; j < n; j++ {
+			temp := matrix[j][i]
+			matrix[j][i] = matrix[i][j]
+			matrix[i][j] = temp
+		}
+	}
+}
+
+func reflect(matrix [][]int) {
+	n := len(matrix[0])
+	for i := 0; i < n; i++ {
+		for j := 0; j < n/2; j++ {
+			temp := matrix[i][j]
+			matrix[i][j] = matrix[i][n-j-1]
+			matrix[i][n-j-1] = temp
+		}
+	}
+}
+
+// TODO: 3 more solutions by matrix operations
