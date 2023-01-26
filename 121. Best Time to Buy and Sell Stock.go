@@ -25,3 +25,18 @@ func maxProfit(prices []int) int {
 	}
 	return maxProfit
 }
+
+func maxProfitPointers(prices []int) int {
+	maxprofit, buy, sell := 0, 0, 1
+	for sell < len(prices) {
+		if prices[buy] < prices[sell] {
+			if prices[sell]-prices[buy] > maxprofit {
+				maxprofit = prices[sell] - prices[buy]
+			}
+		} else {
+			buy = sell
+		}
+		sell++
+	}
+	return maxprofit
+}
