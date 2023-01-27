@@ -38,3 +38,19 @@ func calculate(prices []int, s int) int {
 	}
 	return max
 }
+
+func maxProfitPeaksAndValleys(prices []int) int {
+	maxprofit, i, valley, peak := 0, 0, prices[0], prices[0]
+	for i < len(prices) {
+		for i < len(prices)-1 && prices[i] >= prices[i+1] {
+			i++
+		}
+		valley = prices[i]
+		for i < len(prices)-1 && prices[i] <= prices[i+1] {
+			i++
+		}
+		peak = prices[i]
+		maxprofit += peak - valley
+	}
+	return maxprofit
+}
