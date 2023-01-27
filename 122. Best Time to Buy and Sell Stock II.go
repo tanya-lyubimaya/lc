@@ -54,3 +54,13 @@ func maxProfitPeaksAndValleys(prices []int) int {
 	}
 	return maxprofit
 }
+
+func maxProfitSimplePass(prices []int) int {
+	var maxprofit int
+	for i := 1; i < len(prices); i++ {
+		if prices[i] > prices[i-1] {
+			maxprofit += prices[i] - prices[i-1]
+		}
+	}
+	return maxprofit
+}
